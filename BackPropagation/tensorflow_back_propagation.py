@@ -6,6 +6,7 @@ from sklearn import preprocessing
 def sigmoidprime(x):
     return tf.multiply(tf.sigmoid(x), tf.subtract(1.0, tf.sigmoid(x)))
 
+# 构造训练数据、测试数据
 X = np.zeros((20000, 3))    
 y = np.zeros((20000, 2))
 
@@ -23,18 +24,6 @@ y_test = np.zeros((5000, 2))
 
 for i in range(5000):
     if i%2 == 1:
-        X_test[i, 0], X_test[i, 1], X_test[i, 2] = uniform(70.0, 100.0), uniform(70.0, 100.0), uniform(70.0, 100.0)
-        y_test[i, 0], y_test[i, 1] = 1., .0
-
-    else:
-        X_test[i, 0], X_test[i, 1], X_test[i, 2] = uniform(0.0, 30.0), uniform(0.0, 30.0), uniform(0.0, 30.0)
-        y_test[i, 0], y_test[i, 1] = 0., 1.
-
-preprocessing.scale(X)
-preprocessing.scale(X_test)
-
-for i in range(5000):
-    if i%2 == 1:
         X_test[i, 0], X_test[i, 1], X_test[i, 2] = uniform(65.0, 89.0), uniform(60.0, 110.0), uniform(55.0, 76.0)
         y_test[i, 0], y_test[i, 1] = 1., .0
 
@@ -42,6 +31,8 @@ for i in range(5000):
         X_test[i, 0], X_test[i, 1], X_test[i, 2] = uniform(0.0, 39.0), uniform(10.0, 49.0), uniform(-5, 51.0)
         y_test[i, 0], y_test[i, 1] = 0., 1.
 
+preprocessing.scale(X)
+preprocessing.scale(X_test)
 
 a0 = tf.placeholder(tf.float32, shape=(None, 3))    #((None, 3))
 y0 = tf.placeholder(tf.float32, shape=(None, 2))    #((None, 2))
