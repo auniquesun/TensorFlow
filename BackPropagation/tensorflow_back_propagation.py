@@ -76,7 +76,7 @@ iterations = 10000
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     for iteration in range(iterations):
-        batch_x, batch_y = X[count%100 * batch_size:(i+1)*batch_size, :], y[count%100 * batch_size:(i+1)*batch_size, :]
+        batch_x, batch_y = X[count%100 * batch_size:(count%100+1)*batch_size, :], y[count%100 * batch_size:(count%100+1)*batch_size, :]
         count += 1
         sess.run(step, feed_dict = {a0: batch_x, y0: batch_y})
 
